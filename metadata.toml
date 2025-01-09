@@ -249,3 +249,15 @@ end = "2024-09-30" # Not used on rows
 published = "2024-07-01"
 acquired = "2024-07-01" 
 
+
+[tables.providers.editions.2024-04-08]
+edition_date = "2024-07-01"
+notes = ""
+raw_path = "V:/DATA/Childcare/Great start to quality/Data/2024_Q4/Raw/gstq_2024_Q4.xlsx"
+
+start = "2024-04-01" 
+end = "2024-06-30" # Not used on rows
+
+published = "2024-04-08"
+acquired = "2024-04-08" 
+
