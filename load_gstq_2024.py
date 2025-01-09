@@ -3,8 +3,9 @@ import pandas as pd
 from pandera.errors import SchemaError, SchemaErrors
 import tomli
 
-from great_start_to_quality import setup_logging, db_engine, metadata_engine
+from great_start_to_quality import setup_logging, db_engine, metadata_engine, yes_no_to_bool
 from great_start_to_quality.schema import Providers
+from great_start_to_quality.reference import FIELD_RENAME
 from metadata_audit.capture import record_metadata
 from sqlalchemy.orm import sessionmaker
 
@@ -25,11 +26,35 @@ def main(edition_date):
     edition = metadata["tables"][table_name]["editions"][edition_date]
 
     
-    result = (pd.read_excel(edition["raw_path"]))
+    yes_noes_to_bools = [
+        'cooperative',
+        'faith_based',
+        'montessori',
+        'reggio_inspired',
+        'preschool',
+        'strong_beginnings',
+        'gsrp',
+        'early_head_start',
+        'head_start',
+        'school_age',
+        'nature_based',
+    ]
 
-    print(result.head())
-
-    raise Exception("Checkpoint.")
+    result = (
+        pd.read_excel(edition["raw_path"])
+        .rename(columns=lambda col: col.strip())
+        .rename(columns=FIELD_RENAME) # Review 'reference.py' for details
+        .rename(columns={col: f"__{col}" for col in yes_noes_to_bools}) # These are temp col names to make room for assigns
+        .assign(
+            **{
+                col: lambda df: df[f"__{col}"].apply(yes_no_to_bool)
+                for col in yes_noes_to_bools
+            },
+            date=edition["start"],
+        )
+        .drop([f"__{col}" for col in yes_noes_to_bools], axis=1)
+        .drop(["referral_status_note"], axis=1)
+    )
 
     logger.info(f"Cleaning {table_name} was successful validating schema.")
 
@@ -39,7 +64,7 @@ def main(edition_date):
         logger.info(
             f"Validating {table_name} was successful. Recording metadata."
         )
-    except SchemaError | SchemaErrors as e:
+    except (SchemaError, SchemaErrors) as e:
         logger.error(f"Validating {table_name} failed.", e)
 
     with metadata_engine.connect() as db:
@@ -63,7 +88,7 @@ def main(edition_date):
         logger.info("Metadata recorded, pushing data to db.")
 
         validated.to_sql(  # type: ignore
-            table_name, db, index=False, schema="great_start_to_quality", if_exists="replace"
+            table_name, db, index=False, schema="childcare", if_exists="replace"
         )
 
 

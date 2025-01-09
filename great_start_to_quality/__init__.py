@@ -32,3 +32,12 @@ def setup_logging():
     return logging.getLogger(config["app"]["name"])
 
 
+def yes_no_to_bool(yes_no):
+    """
+    Some datasets have Yes and No instead of booleans -- this fixes that.
+    """
+    if yes_no == "Yes":
+        return True
+    elif yes_no == "No":
+        return False
+    raise ValueError(f"{yes_no} is not 'Yes' or 'No.'")

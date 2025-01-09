@@ -19,21 +19,197 @@ cadence = "monthly"
 
 # Variables are placed in their own sub-list with the table hierarchy
 [[tables.providers.variables]]
-# This var shows all the fields, but it's not necessary to include all in
-# every one. The DB app will figure it out.
-name = "code"
-description = "The code or parent code for each NAICS industry"
-parent_variable = "code"
-# suppression_threshold = "Leave commented if not using."
-standard = "NAICS"
+name = "business_name"
+description = "Licensed program name"
 
 [[tables.providers.variables]]
-name = "title"
-description = "The name of the industry associated with the code"
+name = "license_number"
+description = "Unique identifier assigned to licensed facility"
 
 [[tables.providers.variables]]
-name = "description"
-description = "The code or parent code for each NAICS industry"
+name = "contact_name"
+description = "Person designated as a contact for the facility"
+
+[[tables.providers.variables]]
+name = "license_type"
+description = "Type of licensed facility"
+
+[[tables.providers.variables]]
+name = "profile_link"
+description = "A direct link to the program's profile page within the system"
+
+# This variable exists in the raw file, but since it is all nulls currently, 
+# I'm removing it from the table (MV)
+# [[tables.providers.variables]]
+# name = "referral_status_note"
+# description = "Indicator used to designate program open/closure due to COVID"
+
+[[tables.providers.variables]]
+name = "phone"
+description = "Program contact phone number"
+
+[[tables.providers.variables]]
+name = "email"
+description = "Contact email address for program"
+
+[[tables.providers.variables]]
+name = "address"
+description = "Physical street location of the facility"
+
+[[tables.providers.variables]]
+name = "city"
+description = "Physical city location of the facility"
+
+[[tables.providers.variables]]
+name = "state"
+description = "Physical state location of the facility"
+
+[[tables.providers.variables]]
+name = "zip_code"
+description = "Zip code of physical location"
+
+[[tables.providers.variables]]
+name = "county"
+description = "Physical county location of the facility"
+
+[[tables.providers.variables]]
+name = "region"
+description = "Great Start to Quality designated region of the program"
+
+[[tables.providers.variables]]
+name = "isd_or_esa"
+description = "State designated district of the program"
+
+[[tables.providers.variables]]
+name = "website"
+description = "URL of program's website"
+
+[[tables.providers.variables]]
+name = "licensed_registered_date"
+description = "Last license active date"
+
+[[tables.providers.variables]]
+name = "accepts_ages_from"
+description = "Youngest age the program is currently enrolling"
+
+[[tables.providers.variables]]
+name = "accepts_ages_to"
+description = "Oldest age the program is currently enrolling"
+
+[[tables.providers.variables]]
+name = "licensed_ages_from"
+description = "Youngest age the program is currently licensed to serve"
+
+[[tables.providers.variables]]
+name = "licensed_ages_to"
+description = "Oldest age the program is currently licensed to serve"
+
+[[tables.providers.variables]]
+name = "capacity"
+description = "Licensed program capacity"
+
+[[tables.providers.variables]]
+name = "accreditation"
+description = """Indicates program's participation in national early care and education accrediting body
+NAC=National Accreditation Commission
+NAEYC=National Association for the Education of Young Children
+NAFCC=National Association for Family Child Care"""
+
+[[tables.providers.variables]]
+name = "full_time"
+description = "Offers full-day care"
+
+[[tables.providers.variables]]
+name = "part_time"
+description = "Offers care for 5 hours or less"
+
+[[tables.providers.variables]]
+name = "dropin_hourly"
+description = "Offers back-up care on an as needed basis or care by the hour"
+
+[[tables.providers.variables]]
+name = "before_school"
+description = "Offers schoolage care before regular school hours"
+
+[[tables.providers.variables]]
+name = "after_school"
+description = "Offers schoolage care after regular school hours"
+
+[[tables.providers.variables]]
+name = "evening"
+description = "Offers care after 5pm"
+
+[[tables.providers.variables]]
+name = "overnight"
+description = "Offers care after 5pm"
+
+[[tables.providers.variables]]
+name = "all_hours"
+description = "Offers care continuously"
+
+[[tables.providers.variables]]
+name = "weekend"
+description = "Offers care on Saturdays and/or Sundays"
+
+[[tables.providers.variables]]
+name = "cdc_scholarships"
+description = "Accepts Child Development and Care eligible families"
+
+[[tables.providers.variables]]
+name = "quality_level"
+description = "Indicates the level of quality as defined by the GSQ quality improvement process"
+
+[[tables.providers.variables]]
+name = "publish_level_date"
+description = "Date on which the program achieved the current quality level"
+
+[[tables.providers.variables]]
+name = "level_expiration_date"
+description = "Date on which the current quality level expires"
+
+[[tables.providers.variables]]
+name = "cooperative"
+description = "Program runs a cooperative model where parents support providing care"
+
+[[tables.providers.variables]]
+name = "faith_based"
+description = "Program has a religious affiliation or inspired curriculum"
+
+[[tables.providers.variables]]
+name = "montessori"
+description = "Program follows the Montessori curriculum and philosophy"
+
+[[tables.providers.variables]]
+name = "reggio_inspired"
+description = "Program follow the Reggio teaching philosophy"
+
+[[tables.providers.variables]]
+name = "preschool"
+description = "Program offers a preschool program"
+
+[[tables.providers.variables]]
+name = "strong_beginnings"
+description = ""
+
+[[tables.providers.variables]]
+name = "gsrp"
+description = "Program offers a Michigan's state funded Pre-K program"
+
+[[tables.providers.variables]]
+name = "early_head_start"
+description = "Program offers a federally funded Early Head Start Program for ages birth to age 3"
+
+[[tables.providers.variables]]
+name = "head_start"
+description = "Program offers a federally funded Head Start Program for ages 3-5"
+
+[[tables.providers.variables]]
+name = "school_age"
+description = "Program offers only schoolage care, including before and after school or care during school break and summer"
+
+[[tables.providers.variables]]
+name = "nature_based"
+description = ""
 
 # Editions tracks when items were uploaded.
 [tables.providers.editions.2025-01-01]
