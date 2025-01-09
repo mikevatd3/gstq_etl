@@ -55,7 +55,6 @@ def main(edition_date):
         )
         .drop([f"__{col}" for col in yes_noes_to_bools], axis=1)
         .drop(["referral_status_note"], axis=1)
-        .drop(7102, axis=0)
     )
 
     logger.info(f"Cleaning {table_name} was successful validating schema.")
