@@ -223,3 +223,16 @@ end = "2025-01-31" # Not used on rows
 published = "2025-01-01"
 acquired = "2025-01-08" 
 
+
+[tables.providers.editions.2024-10-01]
+edition_date = "2024-10-01"
+notes = """This is the first table uploaded using the new schema reported by GSTQ.
+'school_age' is not available on this dataset but is available on subsequent datasets."""
+raw_path = "V:/DATA/Childcare/Great start to quality/Data/2024_Q4/Raw/gstq_2024_Q4.xlsx"
+
+start = "2024-10-01" 
+end = "2024-12-31" # Not used on rows
+
+published = "2024-10-21"
+acquired = "2024-10-21" 
+

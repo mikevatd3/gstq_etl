@@ -36,6 +36,7 @@ def main(edition_date):
         'gsrp',
         'early_head_start',
         'head_start',
+        'school_age',
         'nature_based',
     ]
 
@@ -50,7 +51,6 @@ def main(edition_date):
                 for col in yes_noes_to_bools
             },
             date=edition["start"],
-            __school_age=None, # This exists in subsequent datasets
         )
         .drop([f"__{col}" for col in yes_noes_to_bools], axis=1)
         .drop(["referral_status_note"], axis=1)

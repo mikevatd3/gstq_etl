@@ -51,7 +51,7 @@ class Providers(pa.DataFrameModel):
     gsrp: bool = pa.Field()
     early_head_start: bool = pa.Field()
     head_start: bool = pa.Field()
-    school_age: bool = pa.Field()
+    school_age: bool = pa.Field(nullable=True)
     nature_based: bool = pa.Field()
     date: datetime.date = pa.Field()
 
