@@ -241,7 +241,7 @@ acquired = "2024-10-21"
 edition_date = "2024-07-01"
 notes = """This is the first table uploaded using the new schema reported by GSTQ.
 'school_age' is not available on this dataset but is available on subsequent datasets."""
-raw_path = "V:/DATA/Childcare/Great start to quality/Data/2024_Q4/Raw/gstq_2024_Q4.xlsx"
+raw_path = "V:/DATA/Childcare/Great start to quality/Data/2024_Q3/Raw/gstq_2024_Q3.xlsx"
 
 start = "2024-07-01" 
 end = "2024-09-30" # Not used on rows
@@ -251,13 +251,25 @@ acquired = "2024-07-01"
 
 
 [tables.providers.editions.2024-04-01]
-edition_date = "2024-07-01"
+edition_date = "2024-04-01"
 notes = ""
-raw_path = "V:/DATA/Childcare/Great start to quality/Data/2024_Q4/Raw/gstq_2024_Q4.xlsx"
+raw_path = "V:/DATA/Childcare/Great start to quality/Data/2024_Q2/Raw/gstq_2024_Q2.xlsx"
 
 start = "2024-04-01" 
 end = "2024-06-30" # Not used on rows
 
 published = "2024-04-08"
 acquired = "2024-04-08" 
+
+
+[tables.providers.editions.2024-01-01]
+edition_date = "2024-01-01"
+notes = ""
+raw_path = "V:/DATA/Childcare/Great start to quality/Data/2023/Raw/gstq_2023.xlsx"
+
+start = "2024-01-01" 
+end = "2024-03-30" # Not used on rows
+
+published = "2023-12-06"
+acquired = "2023-12-06" 
 
