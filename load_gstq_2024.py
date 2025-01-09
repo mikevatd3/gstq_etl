@@ -10,7 +10,7 @@ from sqlalchemy.orm import sessionmaker
 
 logger = setup_logging()
 
-table_name = "great_start_to_quality"
+table_name = "providers"
 
 with open("metadata.toml", "rb") as md:
     metadata = tomli.load(md)
@@ -25,7 +25,9 @@ def main(edition_date):
     edition = metadata["tables"][table_name]["editions"][edition_date]
 
     
-    result = (pd.read_csv(edition["raw_path"]))
+    result = (pd.read_excel(edition["raw_path"]))
+
+    print(result.head())
 
     raise Exception("Checkpoint.")
 
