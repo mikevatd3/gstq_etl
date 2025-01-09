@@ -1,0 +1,49 @@
+# Topic is the highest level of organization. It serves as a container
+# for datasets that should live together in their own schema.
+name = "great_start_to_quality"
+description = "The ETL script for loading the childcare information from GSTQ."
+
+[tables.providers]
+name="providers"
+description = "The main GSTQ file that has every provider licensed in the state."
+unit_of_analysis = "Childcare provider"
+universe = "All childcare providers licensed in Michigan reported by GSTQ."
+owner = "Great Start to Quality"
+collector = "Great Start to Quality"
+# collection_method = "Leave commented if not using"
+collection_reason = "To help families select the right childcare program for their needs."
+source_url = "https://greatstarttoquality.org/"
+# notes = "Leave commented if not using"
+# use_conditions = "Leave commented if not using"
+cadence = "monthly"
+
+# Variables are placed in their own sub-list with the table hierarchy
+[[tables.providers.variables]]
+# This var shows all the fields, but it's not necessary to include all in
+# every one. The DB app will figure it out.
+name = "code"
+description = "The code or parent code for each NAICS industry"
+parent_variable = "code"
+# suppression_threshold = "Leave commented if not using."
+standard = "NAICS"
+
+[[tables.providers.variables]]
+name = "title"
+description = "The name of the industry associated with the code"
+
+[[tables.providers.variables]]
+name = "description"
+description = "The code or parent code for each NAICS industry"
+
+# Editions tracks when items were uploaded.
+[tables.providers.editions.2025-01-01]
+edition_date = "2025-01-01"
+notes = "First upload of this dataset"
+raw_path = "/home/michael/projects/new/system/data/naics/raw/naics_descriptions_2022.csv"
+
+start = "2025-01-01" 
+end = "2025-01-31" # Not used on rows
+
+published = "2025-01-01"
+acquired = "2025-01-08" 
+
