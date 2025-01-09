@@ -1,3 +1,8 @@
+FIELD_NAME_UPDATE = {
+    'Child Development and Care (CDC) Subsidy': 'Child Development and Care (CDC) Scholarships',
+    'School Age ONLY': 'School-age',
+}
+
 FIELD_RENAME = {
     'Business Name': 'business_name',
     'License Number': 'license_number',
@@ -49,3 +54,4 @@ FIELD_RENAME = {
 }
 
 FIELD_REFERENCE = {val: key for key, val in FIELD_RENAME.items()}
+

@@ -5,7 +5,7 @@ import tomli
 
 from great_start_to_quality import setup_logging, db_engine, metadata_engine, yes_no_to_bool
 from great_start_to_quality.schema import Providers
-from great_start_to_quality.reference import FIELD_RENAME
+from great_start_to_quality.reference import FIELD_RENAME, FIELD_NAME_UPDATE
 from metadata_audit.capture import record_metadata
 from sqlalchemy.orm import sessionmaker
 
@@ -37,11 +37,13 @@ def main(edition_date):
         'early_head_start',
         'head_start',
         'nature_based',
+        'school_age'
     ]
 
     result = (
         pd.read_excel(edition["raw_path"])
         .rename(columns=lambda col: col.strip())
+        .rename(columns=FIELD_NAME_UPDATE)
         .rename(columns=FIELD_RENAME) # Review 'reference.py' for details
         .rename(columns={col: f"__{col}" for col in yes_noes_to_bools}) # These are temp col names to make room for assigns
         .assign(
@@ -50,7 +52,6 @@ def main(edition_date):
                 for col in yes_noes_to_bools
             },
             date=edition["start"],
-            __school_age=None, # This exists in subsequent datasets
         )
         .drop([f"__{col}" for col in yes_noes_to_bools], axis=1)
         .drop(["referral_status_note"], axis=1)
@@ -66,10 +67,10 @@ def main(edition_date):
         )
     except (SchemaError, SchemaErrors) as e:
         logger.error(f"Validating {table_name} failed.", e)
+        return 
 
     with metadata_engine.connect() as db:
         logger.info("Connected to metadata schema.")
-
         record_metadata(
             Providers,
             __file__,
@@ -83,9 +84,9 @@ def main(edition_date):
 
         db.commit()
         logger.info("successfully recorded metadata")
+        logger.info("Metadata recorded, pushing data to db.")
 
     with db_engine.connect() as db:
-        logger.info("Metadata recorded, pushing data to db.")
 
         validated.to_sql(  # type: ignore
             table_name, db, index=False, schema="childcare", if_exists="append"
