@@ -3,3 +3,4 @@ env
 .venv
 config.toml
 config.json
+*.log
