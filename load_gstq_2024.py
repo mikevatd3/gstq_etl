@@ -63,7 +63,7 @@ def main(edition_date):
             }
             date=edition["start"],
         )
-        .drop([f"__{col}" for col in yes_noes_to_bools + to_convert_to_months], axis=1)
+        .drop([f"__{col}" for col in yes_noes_to_bools], axis=1)
         .drop(["referral_status_note"], axis=1)
     )
 

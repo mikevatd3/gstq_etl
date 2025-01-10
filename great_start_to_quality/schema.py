@@ -47,7 +47,7 @@ class Providers(pa.DataFrameModel):
     montessori: bool = pa.Field()
     reggio_inspired: bool = pa.Field()
     preschool: bool = pa.Field()
-    strong_beginnings: bool = pa.Field()
+    strong_beginnings: bool = pa.Field(nullable=True) # Not on pre-2023
     gsrp: bool = pa.Field()
     early_head_start: bool = pa.Field()
     head_start: bool = pa.Field()

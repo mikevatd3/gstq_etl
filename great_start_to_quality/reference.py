@@ -1,4 +1,8 @@
-FIELD_NAME_UPDATE = {
+FIELD_NAME_UPDATE_2023 = {
+    'Great Start Readiness Program': 'gsrp',
+}
+
+FIELD_NAME_UPDATE_2024 = {
     'Child Development and Care (CDC) Subsidy': 'Child Development and Care (CDC) Scholarships',
     'School Age ONLY': 'School-age',
 }

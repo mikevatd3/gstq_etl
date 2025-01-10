@@ -11,7 +11,7 @@ from great_start_to_quality import (
     text_to_months
 )
 from great_start_to_quality.schema import Providers
-from great_start_to_quality.reference import FIELD_RENAME, FIELD_NAME_UPDATE
+from great_start_to_quality.reference import FIELD_RENAME, FIELD_NAME_UPDATE_2023, FIELD_NAME_UPDATE_2024
 from metadata_audit.capture import record_metadata
 from sqlalchemy.orm import sessionmaker
 
@@ -37,7 +37,6 @@ def main(edition_date):
         'montessori',
         'reggio_inspired',
         'preschool',
-        'strong_beginnings',
         'gsrp',
         'early_head_start',
         'head_start',
@@ -55,7 +54,8 @@ def main(edition_date):
     result = (
         pd.read_csv(edition["raw_path"]) # Before 2024 it was a CSV
         .rename(columns=lambda col: col.strip())
-        .rename(columns=FIELD_NAME_UPDATE)
+        .rename(columns=FIELD_NAME_UPDATE_2023)
+        .rename(columns=FIELD_NAME_UPDATE_2024)
         .rename(columns=FIELD_RENAME) # Review 'reference.py' for details
         .rename(columns={
             col: f"__{col}" 
@@ -70,6 +70,7 @@ def main(edition_date):
                 col: lambda df: df[f"__{col}"].apply(text_to_months)
                 for col in to_convert_to_months
             },
+            strong_beginnings=None, # On future files
             date=edition["start"],
         )
         .drop([f"__{col}" for col in yes_noes_to_bools + to_convert_to_months], axis=1)
