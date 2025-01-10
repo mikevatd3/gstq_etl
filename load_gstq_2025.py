@@ -24,6 +24,9 @@ with open("metadata.toml", "rb") as md:
 @click.argument("edition_date")
 @click.option("-m", "--metadata_only", is_flag=True, help="Skip uploading dataset.")
 def main(edition_date, metadata_only):
+    if metadata_only:
+        logger.info("Metadata only was selected.")
+
     edition = metadata["tables"][table_name]["editions"][edition_date]
     
     yes_noes_to_bools = [
