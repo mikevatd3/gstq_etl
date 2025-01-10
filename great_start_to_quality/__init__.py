@@ -46,4 +46,4 @@ def yes_no_to_bool(yes_no):
 def text_to_months(text):
     years, _, months, _ = text.split()
 
-    return int(years) * 12 + (months)
+    return int(years) * 12 + int(months)
