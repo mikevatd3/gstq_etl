@@ -67,7 +67,7 @@ def main(edition_date):
                 for col in yes_noes_to_bools
             },
             **{
-                col: lambda df: df[f"__{col}"].apply(yes_no_to_bool)
+                col: lambda df: df[f"__{col}"].apply(text_to_months)
                 for col in to_convert_to_months
             },
             date=edition["start"],
