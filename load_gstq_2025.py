@@ -3,7 +3,7 @@ import pandas as pd
 from pandera.errors import SchemaError, SchemaErrors
 import tomli
 
-from great_start_to_quality import setup_logging, db_engine, metadata_engine, yes_no_to_bool
+from great_start_to_quality import setup_logging, db_engine, metadata_engine, yes_no_to_bool, text_to_months
 from great_start_to_quality.schema import Providers
 from great_start_to_quality.reference import FIELD_RENAME
 from metadata_audit.capture import record_metadata
@@ -40,19 +40,32 @@ def main(edition_date):
         'nature_based',
     ]
 
+
+    to_convert_to_months = [
+        'accepts_from_mos',
+        'accepts_to_mos',
+        'licensed_from_mos',
+        'licensed_to_mos',
+    ]
+
+
     result = (
         pd.read_excel(edition["raw_path"])
         .rename(columns=lambda col: col.strip())
         .rename(columns=FIELD_RENAME) # Review 'reference.py' for details
-        .rename(columns={col: f"__{col}" for col in yes_noes_to_bools}) # These are temp col names to make room for assigns
+        .rename(columns={col: f"__{col}" for col in yes_noes_to_bools + to_convert_to_months}) # These are temp col names to make room for assigns
         .assign(
             **{
                 col: lambda df: df[f"__{col}"].apply(yes_no_to_bool)
                 for col in yes_noes_to_bools
             },
+            **{
+                col: lambda df: df[f"__{col}"].apply(text_to_months)
+                for col in to_convert_to_months
+            },
             date=edition["start"],
         )
-        .drop([f"__{col}" for col in yes_noes_to_bools], axis=1)
+        .drop([f"__{col}" for col in yes_noes_to_bools + to_convert_to_months], axis=1)
         .drop(["referral_status_note"], axis=1)
     )
 
