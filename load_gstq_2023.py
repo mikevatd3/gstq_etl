@@ -3,7 +3,13 @@ import pandas as pd
 from pandera.errors import SchemaError, SchemaErrors
 import tomli
 
-from great_start_to_quality import setup_logging, db_engine, metadata_engine, yes_no_to_bool, text_to_months
+from great_start_to_quality import (
+    setup_logging,
+    db_engine,
+    metadata_engine,
+    yes_no_to_bool,
+    text_to_months
+)
 from great_start_to_quality.schema import Providers
 from great_start_to_quality.reference import FIELD_RENAME, FIELD_NAME_UPDATE
 from metadata_audit.capture import record_metadata
@@ -47,20 +53,23 @@ def main(edition_date):
     ]
 
     result = (
-        pd.read_excel(edition["raw_path"])
+        pd.read_csv(edition["raw_path"]) # Before 2024 it was a CSV
         .rename(columns=lambda col: col.strip())
         .rename(columns=FIELD_NAME_UPDATE)
         .rename(columns=FIELD_RENAME) # Review 'reference.py' for details
-        .rename(columns={col: f"__{col}" for col in yes_noes_to_bools + to_convert_to_months}) # These are temp col names to make room for assigns
+        .rename(columns={
+            col: f"__{col}" 
+            for col in yes_noes_to_bools + to_convert_to_months
+        }) # These are temp col names to make room for assigns
         .assign(
             **{
                 col: lambda df: df[f"__{col}"].apply(yes_no_to_bool)
                 for col in yes_noes_to_bools
             },
             **{
-                col: lambda df: df[f"__{col}"].apply(text_to_months)
+                col: lambda df: df[f"__{col}"].apply(yes_no_to_bool)
                 for col in to_convert_to_months
-            }
+            },
             date=edition["start"],
         )
         .drop([f"__{col}" for col in yes_noes_to_bools + to_convert_to_months], axis=1)

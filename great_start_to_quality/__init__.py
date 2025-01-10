@@ -41,3 +41,9 @@ def yes_no_to_bool(yes_no):
     elif yes_no == "No":
         return False
     raise ValueError(f"{yes_no} is not 'Yes' or 'No.'")
+
+
+def text_to_months(text):
+    years, _, months, _ = text.split()
+
+    return int(years) * 12 + (months)

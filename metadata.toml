@@ -91,18 +91,22 @@ description = "Last license active date"
 [[tables.providers.variables]]
 name = "accepts_ages_from"
 description = "Youngest age the program is currently enrolling"
+standard = "months"
 
 [[tables.providers.variables]]
 name = "accepts_ages_to"
 description = "Oldest age the program is currently enrolling"
+standard = "months"
 
 [[tables.providers.variables]]
 name = "licensed_ages_from"
 description = "Youngest age the program is currently licensed to serve"
+standard = "months"
 
 [[tables.providers.variables]]
 name = "licensed_ages_to"
 description = "Oldest age the program is currently licensed to serve"
+standard = "months"
 
 [[tables.providers.variables]]
 name = "capacity"
