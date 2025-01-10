@@ -22,7 +22,11 @@ with open("metadata.toml", "rb") as md:
 # with the metadata provided to the metadata system.
 @click.command()
 @click.argument("edition_date")
-def main(edition_date):
+@click.option("-m", "--metadata_only", is_flag=True, help="Skip uploading dataset.")
+def main(edition_date, metadata_only):
+    if metadata_only:
+        logger.info("Metadata only was selected.")
+
     edition = metadata["tables"][table_name]["editions"][edition_date]
 
     yes_noes_to_bools = [
@@ -96,11 +100,15 @@ def main(edition_date):
         logger.info("successfully recorded metadata")
         logger.info("Metadata recorded, pushing data to db.")
 
-    with db_engine.connect() as db:
+    if not metadata_only:
+        with db_engine.connect() as db:
+            logger.info("Metadata recorded, pushing data to db.")
 
-        validated.to_sql(  # type: ignore
-            table_name, db, index=False, schema="childcare", if_exists="append"
-        )
+            validated.to_sql(  # type: ignore
+                table_name, db, index=False, schema="childcare", if_exists="append"
+            )
+    else:
+        logger.info("Metadata only specified, so process complete.")
 
 
 if __name__ == "__main__":
