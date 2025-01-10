@@ -269,7 +269,7 @@ acquired = "2024-04-08"
 [tables.providers.editions.2024-01-01]
 edition_date = "2024-01-01"
 notes = ""
-raw_path = "V:/DATA/Childcare/Great start to quality/Data/2023/Raw/gstq_2023.xlsx"
+raw_path = "V:/DATA/Childcare/Great start to quality/Data/2023/Raw/gstq_2023.csv"
 
 start = "2024-01-01" 
 end = "2024-03-30" # Not used on rows
