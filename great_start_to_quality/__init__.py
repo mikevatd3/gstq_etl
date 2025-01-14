@@ -1,4 +1,5 @@
 from pathlib import Path
+from itertools import islice
 import json
 import logging
 import logging.config
@@ -47,6 +48,7 @@ def text_to_months(text):
     years, _, months, _ = text.split()
 
     return int(years) * 12 + int(months)
+
 
 if __name__ == "__main__":
     print(text_to_months("0 years 0 months"))

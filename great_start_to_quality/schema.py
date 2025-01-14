@@ -1,7 +1,8 @@
 import datetime
+import geopandas as gpd
 import pandas as pd
 import pandera as pa
-from pandera.typing import Series
+from shapely.geometry import Point
 
 
 class Providers(pa.DataFrameModel):
@@ -71,7 +72,10 @@ class Providers(pa.DataFrameModel):
 
 class ProvidersGEO(pa.DataFrameModel):
     license_number: str = pa.Field(nullable=False)
-    year: datetime.date = pa.Field(nullable=False)
+    date: datetime.date = pa.Field(nullable=False)
+    match_type: str = pa.Field()
+    block_geoid: str = pa.Field(nullable=True)
+    geom: Point = pa.Field(nullable=True)
 
     class Config:  # type: ignore
         strict = True

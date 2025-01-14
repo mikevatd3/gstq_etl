@@ -293,14 +293,34 @@ source_url = "https://greatstarttoquality.org/"
 # use_conditions = "Leave commented if not using"
 cadence = "monthly"
 
+[[tables.providers_geo.variables]]
+name = "license_number"
+description = "KEY: The provider license number from childcare.providers"
+
+[[tables.providers_geo.variables]]
+name = "date"
+description = "KEY: Matches the date on childcare.providers"
+
+[[tables.providers_geo.variables]]
+name = "match_type"
+description = "The match type returned from the Census Geocoder"
+
+[[tables.providers_geo.variables]]
+name = "block_geoid"
+description = "The full geoid of the block group (parse to get parts)."
+
+[[tables.providers_geo.variables]]
+name = "geom"
+description = "The geometry column (a centroid for the provider address)"
+
 [tables.providers_geo.editions.2025-01-01]
 edition_date = "2025-01-01"
 notes = "The initial run of the script that covered Dec 2023 - Jan 2025."
 raw_path = "N/A"
 
 start = "2024-01-01" 
-end = "2024-03-30" # Not used on rows
+end = "2025-01-31" # Not used on rows
 
-published = "2023-12-06"
-acquired = "2023-12-06" 
+published = "2025-01-14"
+acquired = "2023-01-08" 
 
