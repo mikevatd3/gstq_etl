@@ -293,7 +293,7 @@ source_url = "https://greatstarttoquality.org/"
 # use_conditions = "Leave commented if not using"
 cadence = "monthly"
 
-[tables.providers.editions.2025-01-01]
+[tables.providers_geo.editions.2025-01-01]
 edition_date = "2025-01-01"
 notes = "The initial run of the script that covered Dec 2023 - Jan 2025."
 raw_path = "N/A"
