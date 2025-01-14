@@ -280,7 +280,7 @@ acquired = "2023-12-06"
 
 
 [tables.providers_geo]
-name="providers"
+name="providers_geo"
 description = "The geographic information that goes with the childcare providers."
 unit_of_analysis = "Childcare provider"
 universe = "All childcare providers licensed in Michigan reported by GSTQ."
