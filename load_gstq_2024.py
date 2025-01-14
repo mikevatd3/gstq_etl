@@ -39,8 +39,8 @@ def main(edition_date, metadata_only):
         'gsrp',
         'early_head_start',
         'head_start',
+        'school_age',
         'nature_based',
-        'school_age'
     ]
 
     to_convert_to_months = [
@@ -58,11 +58,11 @@ def main(edition_date, metadata_only):
         .rename(columns={col: f"__{col}" for col in yes_noes_to_bools + to_convert_to_months}) # These are temp col names to make room for assigns
         .assign(
             **{
-                col: lambda df: df[f"__{col}"].apply(yes_no_to_bool)
+                col: lambda df, col=col: df[f"__{col}"].apply(yes_no_to_bool)
                 for col in yes_noes_to_bools
             },
             **{
-                col: lambda df: df[f"__{col}"].apply(text_to_months)
+                col: lambda df, col=col: df[f"__{col}"].apply(text_to_months)
                 for col in to_convert_to_months
             },
             date=edition["start"],
@@ -71,20 +71,22 @@ def main(edition_date, metadata_only):
         .drop(["referral_status_note"], axis=1)
     )
 
-    logger.info(f"Cleaning {table_name} was successful validating schema.")
+    logger.info(f"Cleaning {table_name} complete. Validating schema.")
 
     # Validate
     try:
-        validated = Providers.validate(result)
+        validated = Providers.validate(result, lazy=True)
         logger.info(
-            f"Validating {table_name} was successful. Recording metadata."
+            f"Validating {table_name} complete. Recording metadata."
         )
+
     except (SchemaError, SchemaErrors) as e:
         logger.error(f"Validating {table_name} failed.", e)
         return 
 
     with metadata_engine.connect() as db:
         logger.info("Connected to metadata schema.")
+
         record_metadata(
             Providers,
             __file__,

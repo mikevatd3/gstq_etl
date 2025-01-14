@@ -28,7 +28,7 @@ def main(edition_date, metadata_only):
         logger.info("Metadata only was selected.")
 
     edition = metadata["tables"][table_name]["editions"][edition_date]
-    
+
     yes_noes_to_bools = [
         'cooperative',
         'faith_based',
@@ -42,7 +42,6 @@ def main(edition_date, metadata_only):
         'school_age',
         'nature_based',
     ]
-
 
     to_convert_to_months = [
         'accepts_from_mos',
@@ -100,6 +99,7 @@ def main(edition_date, metadata_only):
 
         db.commit()
         logger.info("successfully recorded metadata")
+        logger.info("Metadata recorded, pushing data to db.")
 
     if not metadata_only:
         with db_engine.connect() as db:
