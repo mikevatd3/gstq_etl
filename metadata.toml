@@ -2,6 +2,7 @@
 # for datasets that should live together in their own schema.
 name = "great_start_to_quality"
 description = "The ETL script for loading the childcare information from GSTQ."
+schema = "childcare"
 
 [tables.providers]
 name="providers"
@@ -270,6 +271,32 @@ acquired = "2024-04-08"
 edition_date = "2024-01-01"
 notes = ""
 raw_path = "V:/DATA/Childcare/Great start to quality/Data/2023/Raw/gstq_2023.csv"
+
+start = "2024-01-01" 
+end = "2024-03-30" # Not used on rows
+
+published = "2023-12-06"
+acquired = "2023-12-06" 
+
+
+[tables.providers_geo]
+name="providers"
+description = "The geographic information that goes with the childcare providers."
+unit_of_analysis = "Childcare provider"
+universe = "All childcare providers licensed in Michigan reported by GSTQ."
+owner = "Great Start to Quality"
+collector = "Great Start to Quality; Census Geocoder"
+# collection_method = "Leave commented if not using"
+collection_reason = "To identify tract for the providers from the gstq file."
+source_url = "https://greatstarttoquality.org/"
+# notes = "Leave commented if not using"
+# use_conditions = "Leave commented if not using"
+cadence = "monthly"
+
+[tables.providers.editions.2025-01-01]
+edition_date = "2025-01-01"
+notes = "The initial run of the script that covered Dec 2023 - Jan 2025."
+raw_path = "N/A"
 
 start = "2024-01-01" 
 end = "2024-03-30" # Not used on rows

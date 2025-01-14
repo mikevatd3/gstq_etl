@@ -52,6 +52,21 @@ def main(edition_date, metadata_only):
     ]
 
 
+    def convert_to_bools(df):
+        for col in yes_noes_to_bools:
+            df[col] = df[f"__{col}"].apply(yes_no_to_bool)
+        
+        return df
+
+
+    def convert_to_months(df):
+        for col in to_convert_to_months:
+            df[col] = df[f"__{col}"].apply(convert_to_months)
+        
+        return df
+
+
+
     result = (
         pd.read_excel(edition["raw_path"])
         .rename(columns=lambda col: col.strip())
@@ -59,11 +74,11 @@ def main(edition_date, metadata_only):
         .rename(columns={col: f"__{col}" for col in yes_noes_to_bools + to_convert_to_months}) # These are temp col names to make room for assigns
         .assign(
             **{
-                col: lambda df: df[f"__{col}"].apply(yes_no_to_bool)
+                col: lambda df, col=col: df[f"__{col}"].apply(yes_no_to_bool)
                 for col in yes_noes_to_bools
             },
             **{
-                col: lambda df: df[f"__{col}"].apply(text_to_months)
+                col: lambda df, col=col: df[f"__{col}"].apply(text_to_months)
                 for col in to_convert_to_months
             },
             date=edition["start"],

@@ -1,4 +1,5 @@
 import datetime
+import pandas as pd
 import pandera as pa
 from pandera.typing import Series
 
@@ -53,8 +54,26 @@ class Providers(pa.DataFrameModel):
     head_start: bool = pa.Field()
     school_age: bool = pa.Field(nullable=True)
     nature_based: bool = pa.Field()
-    date: datetime.date = pa.Field()
+    date: datetime.date = pa.Field(nullable=False)
 
     class Config:  # type: ignore
         strict = True
         coerce = True
+
+    @pa.dataframe_check
+    def accepts_froms_neq_tos(cls, df: pd.DataFrame) -> Series[bool]:
+        return df["accepts_from_mos"] != df["accepts_from_mos"]
+
+    @pa.dataframe_check
+    def licensed_froms_neq_tos(cls, df: pd.DataFrame) -> Series[bool]:
+        return df["licensed_from_mos"] != df["licensed_from_mos"]
+
+
+class ProvidersGEO(pa.DataFrameModel):
+    license_number: str = pa.Field(nullable=False)
+    year: datetime.date = pa.Field(nullable=False)
+
+    class Config:  # type: ignore
+        strict = True
+        coerce = True
+
