@@ -61,12 +61,12 @@ class Providers(pa.DataFrameModel):
         coerce = True
 
     @pa.dataframe_check
-    def accepts_froms_neq_tos(cls, df: pd.DataFrame) -> Series[bool]:
-        return df["accepts_from_mos"] != df["accepts_from_mos"]
+    def accepts_froms_neq_tos(cls, df: pd.DataFrame) -> bool:
+        return (df["accepts_from_mos"] != df["accepts_to_mos"]).any()
 
     @pa.dataframe_check
-    def licensed_froms_neq_tos(cls, df: pd.DataFrame) -> Series[bool]:
-        return df["licensed_from_mos"] != df["licensed_from_mos"]
+    def licensed_froms_neq_tos(cls, df: pd.DataFrame) -> bool:
+        return (df["licensed_from_mos"] != df["licensed_to_mos"]).any()
 
 
 class ProvidersGEO(pa.DataFrameModel):
