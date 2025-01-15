@@ -2,6 +2,7 @@ import datetime
 import geopandas as gpd
 import pandas as pd
 import pandera as pa
+from pandera.typing import Series
 from pandera.typing.geopandas import GeoSeries
 from shapely.geometry import Point
 
@@ -85,3 +86,6 @@ class ProvidersGEO(pa.DataFrameModel):
         strict = True
         coerce = True
 
+    @pa.check("block_geoid")
+    def correct_len_block(cls, block_geoid: Series[str]) -> Series[bool]: 
+        return block_geoid.str.len() == 15
