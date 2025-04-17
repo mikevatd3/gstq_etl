@@ -1,6 +1,30 @@
-__pycache__
+# Don't commit the python junk
 env
-.venv
+__pycache__
+
+# Don't commit the config
 config.toml
-config.json
+
+# Don't include log files
 *.log
+
+# Avoid including any intermediate data downloads
+*.json
+*.geojson
+*.csv
+*.parquet
+*.parquet.gzip
+*.zip
+
+# The logging config is okay
+!logging_config.json
+
+# Any csv or json used as conf are also Okay.
+!**/conf/*.json
+!**/conf/*.csv
+
+.vscode/*
+*/__pycache__/*
+
+# I'm tempted to exclude all ipynbs, but for now we'll leave it
+# *.ipynb
