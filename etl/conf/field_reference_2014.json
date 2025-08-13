@@ -1,0 +1,22 @@
+{
+    "renames": {
+        "Business_N": "business_name",
+        "Address": "address",
+        "License_Nu": "license_number",
+        "License_Ty": "license_type",
+        "Zip_Code": "zip_code",
+        "City": "city",
+        "County": "county",
+        "Early_Head": "early_head_start",
+        "Head_Start": "head_start",
+        "Great_Star": "gsrp",
+        "Published_": "quality_level"
+    },
+    "recodes": {
+        "license_type": {
+            "Licensed Child Care Center": "Licensed Centers",
+            "Licensed Group Child Care Home": "Licensed Group Homes",
+            "Registered Family Child Care Home": "Licensed Family Homes"
+        }
+    }
+}

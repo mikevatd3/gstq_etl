@@ -1,0 +1,29 @@
+{
+    "renames": {
+        "Business_N": "business_name",
+        "Contact_Na": "contact_name",
+        "License_Nu": "license_number",
+        "License_Ty": "license_type",
+        "Email": "email",
+        "Phone": "phone",
+        "Address": "address",
+        "City": "city",
+        "State": "state",
+        "County": "county",
+        "Zip_Code": "zip_code",
+        "Licensed_r": "licensed_registered_date",
+        "Website": "website",
+        "Accepts_Ag": "accepts_from_mos",
+        "Accepts__1": "accepts_to_mos",
+        "Published_": "quality_level"
+    },
+    "recodes": {
+        "license_type": {
+            "Registered Family Homes": "Licensed Family Homes"
+        }
+    },
+    "to_convert_to_months": [
+        "accepts_from_mos",
+        "accepts_to_mos"
+    ]
+}

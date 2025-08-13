@@ -1,0 +1,48 @@
+{
+    "renames": {
+        "BusinessName": "business_name",
+        "LicenseNumber": "license_number",
+        "ContactName": "contact_name",
+        "LicenseType": "license_type",
+        "Phone": "phone",
+        "Email": "email",
+        "Address": "address",
+        "City": "city",
+        "State": "state",
+        "ZipCode": "zip_code",
+        "County": "county",
+        "ISDorESA": "isd_or_esa",
+        "Website": "website",
+        "LicRegDate": "licensed_registered_date",
+        "AcceptsAgesFrom": "accepts_from_mos",
+        "AcceptsAgesTo": "accepts_to_mos",
+        "Capacity": "capacity",
+        "Accreditation": "accreditation",
+        "PublishedRating": "quality_level",
+        "Cooperative": "cooperative",
+        "EarlyHeadStart": "early_head_start",
+        "FaithBased": "faith_based",
+        "GSRP": "gsrp",
+        "HeadStart": "head_start",
+        "Montessori": "montessori",
+        "Preschool": "preschool",
+        "ReggioInspired": "reggio_inspired",
+        "SchoolAgeONLY": "school_age"
+    },
+    "recodes": {},
+    "yes_noes_to_bools": [
+        "cooperative",
+        "faith_based",
+        "montessori",
+        "reggio_inspired",
+        "preschool",
+        "gsrp",
+        "early_head_start",
+        "head_start",
+        "school_age"
+    ],
+    "to_convert_to_months": [
+        "accepts_from_mos",
+        "accepts_to_mos"
+    ]
+}

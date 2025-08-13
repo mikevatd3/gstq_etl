@@ -7,15 +7,6 @@ from sqlalchemy import create_engine
 import tomli
 
 
-with open(Path().cwd() / "config.toml", "rb") as f:
-    config = tomli.load(f)
-
-
-db_engine = create_engine(
-    f"postgresql+psycopg2://{config['db']['user']}:{config['db']['password']}"
-    f"@{config['db']['host']}:{config['db']['port']}/{config['db']['name']}",
-    connect_args={'options': f'-csearch_path={config["app"]["name"]},public'},
-)
 
 metadata_engine = create_engine(
     f"postgresql+psycopg2://{config['db']['user']}:{config['db']['password']}"
@@ -33,21 +24,6 @@ def setup_logging():
     return logging.getLogger(config["app"]["name"])
 
 
-def yes_no_to_bool(yes_no):
-    """
-    Some datasets have Yes and No instead of booleans -- this fixes that.
-    """
-    if yes_no == "Yes":
-        return True
-    elif yes_no == "No":
-        return False
-    raise ValueError(f"{yes_no} is not 'Yes' or 'No.'")
-
-
-def text_to_months(text):
-    years, _, months, _ = text.split()
-
-    return int(years) * 12 + int(months)
 
 
 if __name__ == "__main__":
