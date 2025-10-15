@@ -4,7 +4,7 @@ start_date,end_date,field_reference_file,source_file,sheet_name,skip,notes
 2018-01-01,2019-12-31,field_reference_2018.json,V:\DATA\Childcare\Great start to quality\Data\2018\childcare_centers_2018.csv,,FALSE,
 2020-01-01,2020-12-31,field_reference_2020.json,V:\DATA\Childcare\Great start to quality\Data\2020\Raw\ChildCareData_GreatStartToQuality_7Counties_WORKING_20210202.xlsx,Export Data,FALSE,
 2021-01-01,2021-12-31,field_reference_2021.json,V:\DATA\Childcare\Great start to quality\Data\2021\childcare_centers_2021.csv,,FALSE,
-2022-01-01,2022-12-31,field_reference_2022.json,V:\DATA\Childcare\Great start to quality\Data\2022\Raw\SoutheasternMichigan_ChildcareFacilities_Greattostartquality_2022_geocoded_valid_03162022 - CLEANING.xlsx,Full Dataset,TRUE,"Only 2,600 rows in file, where normal is closer to 8,000"
+2022-01-01,2022-12-31,field_reference_2022.json,V:\DATA\Childcare\Great start to quality\Data\2022\Raw\Statewide_ChildcareCenters_All_20221003.csv,,FALSE
 2023-01-01,2023-12-31,field_reference_2023.json,V:\DATA\Childcare\Great start to quality\Data\2023\Raw\gstq_2023.csv,,FALSE,
 2024-04-01,2024-06-30,field_reference_2024.json,V:\DATA\Childcare\Great start to quality\Data\2024_Q2\Raw\gstq_2024_Q2.xlsx,Export Data,FALSE,
 2024-07-01,2024-09-30,field_reference_2024.json,V:\DATA\Childcare\Great start to quality\Data\2024_Q3\Raw\gstq_2024_Q3.xlsx,Export Data,FALSE,

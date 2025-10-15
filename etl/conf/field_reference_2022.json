@@ -3,7 +3,7 @@
         "business_name": "business_name",
         "license_number": "license_number",
         "contact_name": "contact_name",
-        "License_Type": "License_Type",
+        "License_Type": "license_type",
         "Phone": "phone",
         "Email": "email",
         "Address": "address",
