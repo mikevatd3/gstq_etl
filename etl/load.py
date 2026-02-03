@@ -1,5 +1,6 @@
 from pathlib import Path
 import pandas as pd
+import geopandas as gpd
 from sqlalchemy import create_engine
 import tomllib
 
@@ -18,12 +19,20 @@ db_engine = create_engine(
 
 
 def load_gstq():
+    print("Loading childcare into the database.")
     file = pd.read_csv(WORKING_DIR / "output" / "all_childcare.csv")
 
-    print("Loading childcare into the database.")
     file.to_sql(
         "providers", db_engine, schema="childcare", if_exists="replace", index=False
     )
+
+
+    # print("Loading geocoded file into the database.")
+    # file = gpd.read_file(WORKING_DIR / "output" / "geocoded_providers.geojson")
+
+    # file.to_postgis(
+        # "providers_geo", db_engine, schema="childcare", if_exists="replace", index=False
+    # )
 
 
 if __name__ == "__main__":

@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "beautifulsoup4>=4.13.4",
     "geoalchemy2>=0.18.0",
     "geopandas>=1.1.1",
     "jupyter>=1.1.1",
@@ -13,5 +14,7 @@ dependencies = [
     "psycopg>=3.2.9",
     "psycopg-binary>=3.2.9",
     "pygris>=0.2.0",
+    "requests>=2.32.4",
+    "seaborn>=0.13.2",
     "sqlalchemy>=2.0.41",
 ]
